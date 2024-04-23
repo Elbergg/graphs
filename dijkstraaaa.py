@@ -17,7 +17,7 @@ def dijkstra(G, start, end):
     while queue != []:
         u = queue[0]
         if u.color != "black":
-            adjecencies = G.adj[u]  ###get
+            adjecencies = G.adj[u]
             all_black = True
             for node in end_adj:
                 """
@@ -35,12 +35,19 @@ def dijkstra(G, start, end):
                 node = element[0]
                 weight = element[1]
                 if node.distance is not None:
+                    """
+                    check if going through the parent is faster
+                    than the current route to node
+                    """
                     if weight + u.distance < node.distance:
                         node.color == "gray"
                         node.parent = u
                         node.distance = weight + u.distance
                         queue.append(node)
                 else:
+                    """
+                    route to node not yet defined
+                    """
                     node.distance = weight + u.distance
                     node.color == "gray"
                     queue.append(node)
